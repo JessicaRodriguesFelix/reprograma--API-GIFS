@@ -13,7 +13,7 @@ function erro() {
 function trazResultadoDaBusca(event) {
   event.preventDefault();
   const respostasDaBusca = new XMLHttpRequest();
-  respostasDaBusca.open("GET", `http://api.giphy.com/v1/gifs/search?q=${buscaGif}g&api_key=xUAQeVr6wOfJZIHpMA1pgbvbSQBaycrs&limit=5%22`)
+  respostasDaBusca.open("GET", `http://api.giphy.com/v1/gifs/search?q=${buscaGif()}g&api_key=xUAQeVr6wOfJZIHpMA1pgbvbSQBaycrs&limit=5%22`)
   respostasDaBusca.onload = carregaPostsComGifs;
   respostasDaBusca.onerror = erro;
   respostasDaBusca.send();
@@ -21,7 +21,7 @@ function trazResultadoDaBusca(event) {
 }
 
 function carregaPostsComGifs() {
-  listaGifs = JSON.parse(this.responseText);
+  listaGifs = JSON.parse(this.responseText)["data"];
   exibePosts();
 
 
